@@ -221,6 +221,11 @@ skip_url:
     if (strcmp(im->mm_iptv_url_cmpid ?: (im->mm_iptv_url ?: ""), url2) == 0) {
       im->im_delete_flag = 0;
       change = 0;
+      if (strcmp(im->mm_iptv_url ?: "", url)) {
+        free(im->mm_iptv_url);
+        im->mm_iptv_url = strdup(url);
+        change = 1;
+      }
       if (strcmp(im->mm_iptv_svcname ?: "", name)) {
         free(im->mm_iptv_svcname);
         im->mm_iptv_svcname = strdup(name);
